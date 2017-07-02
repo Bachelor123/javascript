@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>带缓冲的分享选项卡</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 300px;
+            background: deepskyblue;
+            position: absolute;
+            top: 60px;
+            left: -200px;/*元素左边相对于父元素左边偏移，负数代表向父元素以外偏移*/
+        }
+        #div1 span{
+            width: 20px;
+            height: 70px;
+            background: lightpink;
+            position: absolute;
+            top: 120px;
+            right: -20px;/*右边相对于父元素右边偏移，负数代表向父元素以外偏移*/
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+
+            oDiv.onmouseover=function(){
+                startMove(0)
+            }
+            oDiv.onmouseout=function(){
+                startMove(-200)
+            }
+        }
+
+        var timer=null;
+
+        function startMove(iTarget){
+            var oDiv=document.getElementById('div1');
+
+
+            clearInterval(timer);
+            timer=setInterval(function(){
+                if(oDiv.style.left==iTarget+'px')
+                {
+                    clearInterval(timer);
+                }
+                else
+                {
+                    if(oDiv.offsetLeft<iTarget)
+                    {
+                        var speed=(0-oDiv.offsetLeft)/10;
+                        speed=speed>0?Math.ceil(speed):Math.floor(speed);  //缓冲运动不要忘记取整
+                    }
+                    else
+                    {
+                        speed=(-200-oDiv.offsetLeft)/10;
+                        speed=speed>0?Math.ceil(speed):Math.floor(speed);  //缓冲运动不要忘记取整
+                    }
+
+                    oDiv.style.left=oDiv.offsetLeft+speed+'px';
+                }
+            },30);
+
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <span>分享到</span>
+</div>
+</body>
+</html>

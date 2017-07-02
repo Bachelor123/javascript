@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>运动框架</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: #ff0000;
+            opacity: 0.1;
+        }
+    </style>
+    <script src="仿FLASH的图片轮换播放器/Movement.js"></script>
+    <script>
+        window.onload=function()
+        {
+            var oDiv=document.getElementById('div1');
+
+            oDiv.onmouseover=function()
+            {
+                startMove(oDiv,'width',300,function(){
+                    startMove(oDiv,'height',300,function(){
+                        startMove(oDiv,'opacity',100);
+                    })
+                })
+            }
+            oDiv.onmouseout=function()
+            {
+                startMove(oDiv,'opacity',10,function(){
+                    startMove(oDiv,'height',100,function(){
+                        startMove(oDiv,'width',100);
+                    })
+                })
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

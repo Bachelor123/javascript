@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" Content="text/html; charset=utf-8" />
+    <title>javascript</title>
+    <style type="text/css">
+        body{font-size:12px;}
+        #txt{
+            height:400px;
+            width:600px;
+            border:#333 solid 1px;
+            padding:5px;}
+        p{
+            line-height:18px;
+            text-indent:2em;}
+    </style>
+</head>
+<body>
+<h2 id="con">JavaScript课程</H2>
+<div id="txt">
+    <h5>JavaScript为网页添加动态效果并实现与用户交互的功能。</h5>
+    <p>1. JavaScript入门篇，让不懂JS的你，快速了解JS。</p>
+    <p>2. JavaScript进阶篇，让你掌握JS的基础语法、函数、数组、事件、内置对象、BOM浏览器、DOM操作。</p>
+    <p>3. 学完以上两门基础课后，在深入学习JavaScript的变量作用域、事件、对象、运动、cookie、正则表达式、ajax等课程。</p>
+</div>
+<form>
+    <!--当点击相应按钮，执行相应操作，为按钮添加相应事件-->
+    <input id="bt1" type="button" value="改变颜色" >
+    <input id="bt2" type="button" value="改变宽高" >
+    <input id="bt3" type="button" value="隐藏内容" >
+    <input id="bt4" type="button" value="显示内容" >
+    <input id="bt5" type="button" value="取消设置" >
+</form>
+<script type="text/javascript">
+    window.onload=function(){
+        var Btn1=document.getElementById("bt1");
+        var Btn2=document.getElementById("bt2");
+        var Btn3=document.getElementById("bt3");
+        var Btn4=document.getElementById("bt4");
+        var Btn5=document.getElementById("bt5");
+        var Txt=document.getElementById("txt");
+        var Con=document.getElementById("con");
+//定义"改变颜色"的函数
+        Btn1.onclick=function(){
+            if(Txt.style.color=="blue"){
+                Txt.style.color="black";
+                Txt.style.backgroundColor="white";
+            }
+            else{
+                Txt.style.color="blue";
+                Txt.style.backgroundColor="gray";
+            }
+        }
+//定义"改变宽高"的函数
+        Btn2.onclick=function(){
+            if(Txt.style.width=="300px"){
+                Txt.style.width="600px";
+                Txt.style.height="400px";
+            }
+            else{
+                Txt.style.width="300px";
+                Txt.style.height="200px";
+            }
+        }
+
+//定义"隐藏内容"的函数
+        Btn3.onclick=function(){
+            Txt.style.display="none";
+        }
+
+//定义"显示内容"的函数
+        Btn4.onclick=function(){
+            Txt.style.display="block";
+        }
+
+//定义"取消设置"的函数
+        Btn5.onclick=function(){
+            if( confirm("是否取消设置？")){
+                Txt.style.display="block";
+                Txt.style.color="black";
+                Txt.style.backgroundColor="white";
+                Txt.style.width="600px";
+                Txt.style.height="400px";
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

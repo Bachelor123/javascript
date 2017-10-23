@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+        ul{
+            margin:0;
+            padding: 0;
+            list-style-type: none;
+            /*底下两句的目的都是为了让ul的宽度不占据整行*/
+            /*position: absolute;*/
+            display: inline-block;
+        }
+        li{
+            line-height: 40px;
+            position: relative;
+            margin-bottom: 1px;
+            background: aqua;
+            color: #ffffff;
+            padding:0 20px;
+        }
+        li ul{
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-left:100%;
+            white-space: nowrap;
+            display: none;
+        }
+        li:hover{
+            background: gold;
+        }
+    </style>
+</head>
+<body>
+<ul class="nav">
+    <li>首页</li>
+    <li>产品中心
+        <ul>
+            <li>首页</li>
+            <li>产品中心</li>
+            <li>特殊服务
+                <ul>
+                    <li>首页</li>
+                    <li>产品中心</li>
+                    <li>特殊服务</li>
+                    <li>contact us
+                        <ul>
+                            <li>首页</li>
+                            <li>产品中心</li>
+                            <li>特殊服务</li>
+                            <li>contact us</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>contact us</li>
+        </ul>
+    </li>
+    <li>特殊服务</li>
+    <li>contact us</li>
+</ul>
+</body>
+</html>
+<script>
+    var oNavLi=document.querySelectorAll("li");
+    for(var i=0;i<oNavLi.length;i++){
+        oNavLi[i].onmouseover=function(){
+            if(this.querySelector("ul")){  //如果当前发生事件的li里面有ul标签
+                this.querySelector("ul").style.display="block";
+            }
+        };
+        oNavLi[i].onmouseout=function(){
+            if(this.querySelector("ul")){
+                this.querySelector('ul').style.display='none';
+            }
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

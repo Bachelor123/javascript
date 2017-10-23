@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<input type="text" class="txt1"/>
+<select class="sel">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+</select>
+<input type="text" class="txt2"/>
+<!--<button class="btn3">=</button>-->
+<input type="button" class="btn3" value=" = ">
+<input type="text" class="txt3"/>
+</body>
+</html>
+<script>
+    var flag=null;
+    function selector(ele) {
+        return document.querySelector(ele);
+    }
+    selector(".btn3").onclick = function () {
+//      你眼睛瞎还是怎么地，switch里面判断的是value值！！！
+        switch (selector(".sel").value) {
+            case '+':flag="+";
+                break;
+            case "-":
+                flag="-";
+                break;
+            case"*":
+                flag="*";
+                break;
+            default:
+                flag="/";
+        }
+//        eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。(默默的说句eval好强大啊！！！)
+//        其实把计算的表达式放在switch中直接计算也是可以的，只不过我觉得那个代码写好多，还是默默的用了eval（）；
+        selector(".txt3").value = eval(parseFloat(selector(".txt1").value) +flag+ parseFloat(selector(".txt2").value));
+    }
+
+
+    //    ECMAScript Function 对象（类）
+    //    http://www.w3school.com.cn/js/pro_js_functions_function_object.asp
+    var str = "3*2";
+    var result;
+    result = (new Function('return ' + str))();
+    console.log(result);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

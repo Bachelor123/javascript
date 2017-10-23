@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bubble</title>
+    <style>
+        span{
+            display: inline-block;
+            background: aqua;
+            font-size: 20px;
+            margin:5px 0;
+            padding: 5px;
+            cursor: pointer;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            user-select: none;
+        }
+        ul{
+            margin:0;
+            padding:0;
+            list-style-type: none;
+            width: 250px;
+            line-height: 2.2;
+            font-size: 18px;
+            cursor: pointer;
+            height: 0;
+            overflow: hidden;
+            transition:height .3s ease-out;
+            user-select: none;
+        }
+        li{
+            background: deepskyblue;
+            margin-top: 1px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+<span>选项一</span>
+<ul>
+    <li>选项一</li>
+    <li>选项二</li>
+    <li>选项三</li>
+    <li>选项四</li>
+    <li>选项五</li>
+</ul>
+</body>
+</html>
+<script>
+    function selector(ele){
+        return document.querySelector(ele);
+    }
+    //        因为js一般只能获取行间样式，所以先把样式表里的样式拿出来
+//语法 window.getComputedStyle(dom, '伪元素')      获取计算后的样式
+    selector("ul").style.height=window.getComputedStyle(selector("ul"),null).height;
+
+
+    selector("span").onclick=function(ev){
+//        阻止冒泡
+        var ev=ev||event;
+        if(ev.cancelBubble){
+            ev.cancelBubble=true;
+        }
+        else{
+            ev.stopPropagation()
+        }
+
+        if(selector("ul").style.height==0+"px"){
+            selector("ul").style.height="205px";
+        }
+        else{
+            selector("ul").style.height=0;
+        }
+    };
+    var oLi=document.querySelectorAll("li");
+    var tr=oLi[0];
+    tr.style.background="pink";
+    for(var i=0;i<oLi.length;i++){
+        oLi[i].onclick=function(){
+            tr.style.background="";
+            selector("span").innerText=this.innerText;
+            this.style.background="pink";
+            tr=this;
+        }
+    }
+    document.onclick=function(){
+        selector("ul").style.height=0;
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

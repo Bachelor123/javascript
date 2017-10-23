@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件委托</title>
+</head>
+<body>
+<h3>事件委托：主要是一个事件绑定位置的问题，也就是说本来要实现事件绑定的元素，结果有各种原因，
+    不能在元素上绑定，而是在父元素 或祖上元素绑定事件，来实现事件绑定的效果，那么这种 我们就叫他事件委托 ；</h3>
+<ul>
+    <li>首页</li>
+    <li>视频</li>
+    <li>音乐</li>
+    <li>新闻</li>
+</ul>
+<input type="button" value="add input tag">
+<button>add button tag</button>
+</body>
+</html>
+<script>
+    //li要实现点击变红的效果  但这边有一个规定，就是li标签上面不能绑定事件 ，
+    // 那么现在我们利用ev.target来实现给父元素绑定事件   然后在子元素上面触发事件。
+    //通过ev.target来给触发事件的子元素  加上点击变红的效果；
+    // （注意：target用来记录当前触发事件的元素）
+    //事件委托（子元素的事件委托在父元素上面，他的原理还是事件冒泡） 写法
+    var oUl = document.querySelector("ul");
+    oUl.onclick = function (ev) {
+        var ev = ev || event;
+//       if(ev.target.tagName=='LI'){  //此句是事件筛选（注意：此处target输出的就是大写）
+        if (ev.target.tagName.toLocaleLowerCase() == 'li') {  //此句是事件筛选，只有li才有用。（注意：大写转化为小写）
+//       if(ev.target.nodeName.toLocaleLowerCase=='li'){  //此句和上句是相同的）
+            alert(ev.target.nodeName);
+            ev.target.style.background='red';   //ev.target指向发生事件的li标签
+        }
+    }
+//    来来来，我现在来说说事件委托的最大优点，
+//    事件委托他可以用于（DOM操作中）插入标签，增加标签之后不用再次给新增加的标签绑定事件
+    document.querySelector("[type='button']").onclick=function(){
+        var oLi=document.createElement("li");
+        oLi.innerText="增加一个input标签不用绑定事件";
+        oUl.appendChild(oLi);
+    };
+    document.querySelector("button").onclick=function(){
+        var oLi=document.createElement("li");
+        oLi.innerText="增加一个button标签不需要重新绑定事件";
+        oUl.appendChild(oLi);
+    }
+</script>
